@@ -30,6 +30,8 @@ pub fn torrent_search(s: &str) -> Result<Vec<Torrent>, Error> {
         let mut torrents = torrent_search_page(&client, s, n)?;
         if torrents.is_empty() {
             break;
+        } else if all_the_torrents.iter().last() == torrents.last() {
+            break;
         } else {
             all_the_torrents.append(&mut torrents);
         }
